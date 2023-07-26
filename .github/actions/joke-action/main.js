@@ -12,4 +12,16 @@ async function run() {
   core.setOutput("joke-output", joke);
 }
 
+async function run_two() {
+    const github = new GitHub(process.env.GITHUB_TOKEN);
+    const issueComment = {
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      issue_number: context.issue.number,
+      body: 'This is a new comment!'
+    };
+    await github.issues.createComment(issueComment);
+  }
+
 run();
+run_two();
