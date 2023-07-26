@@ -14,7 +14,8 @@ const { context, getOctokit } = require('@actions/github');
 // }
 
 async function run() {
-  const octokit = getOctokit(process.env.GITHUB_TOKEN);
+  const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
+  const octokit = getOctokit(GITHUB_TOKEN);
   const joke = await getJoke();
   console.log(joke);
   core.setOutput("joke-output", joke);
